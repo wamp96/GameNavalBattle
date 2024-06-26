@@ -11,7 +11,6 @@ let games = {};
 const users = {
   user1: 'password1',
   user2: 'password2',
-  // Añadir más usuarios según sea necesario
 };
 
 app.use(express.static('public'));
