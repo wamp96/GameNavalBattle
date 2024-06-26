@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BATALLA NAVAL</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="start-screen">
+        <h1>Batalla Naval Multijugador </h1>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Nombre de usuario" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="submit"> Iniciar Session</button>
+        </form>
+    </div>
+    <div id="lobby" class="hidden">
+        <h2>Esperando a otro jugador...</h2>
+    </div>
+    <div id="game-board" class="hidden">
+        <h2 id="turn-indicator">Es su turno</h2>
+        <div id="player-board" class="board"></div>
+        <div id="opponent-board" class="board"></div>
+        <div id="chat">
+            <div id="messages"></div>
+            <input type="text" id="chat-imput" placeholder="Escribe un mensaje">
+        </div>
+        <div id="move-history">
+            <h3>Historial de Movimientos</h3>
+            <ul id="history-list"></ul>
+        </div>
+        <div id="result-message"></div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
