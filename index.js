@@ -74,3 +74,41 @@ io.on('connection', (socket)=>{
         }
     });
 });
+
+function createNewGame(player1,player2){
+    return {
+        player1: createEmptyBoard(),
+        player2: createEmptyBoard(),
+        turn: player1,
+        history:[],
+    };
+}
+
+function createEmptyBoard(){
+    return Array.from({length:10},()=>Array(10).fill(null));
+}
+
+function processMove(game,move){
+    const currentPlayer = game.turn;
+    const opponentPlayer = currentPlayer === game.player1 ? game.player2 : game.player1;
+    const board = game.turn === game.player1 ? game.player2 : game.player1;
+
+    if(board[move.row][move.col]===ship){
+        board[move.row][move.col] = 'hit';
+        game.history.push({player: currentPlayer, row: move.row, col:move.col,result:'hit'});
+       
+    }else{
+        board[move.row][move.col] = 'miss';
+        game.history.push({player: currentPlayer, row: move.row, col:move.col,result:'miss'});
+        game.turn = opponentPlayer;
+    }
+
+    function checkWin(board){
+        return board.every(row=>row.every(cell=>cell !== 'ship'));
+    }
+
+    const PORT = process.env.PORT || 3000;
+    server.listen(PORT,() =>{
+         console.log('Servidor conectado al puerto ${PORT}');   
+    });
+}
