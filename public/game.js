@@ -54,7 +54,7 @@ socket.on('chatMessage',(message)=>{
 });
 
 chatInput.addEventListener('keypress',(event)=>{
-    if(event.key === 'Enter' &&chatInput.value){
+    if(event.key === 'Enter' && chatInput.value){
         socket.emit('sendMessage', chatInput.value);
         chatInput.value = '';
     }
